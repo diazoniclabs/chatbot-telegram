@@ -1,6 +1,11 @@
 from telegram.ext import Updater, MessageHandler, Filters
 from Adafruit_IO import Client, Data
-aio = Client('Diazonic', 'bb69d720de4446128cbbf7bcae1531a4')
+import os
+id = os.environ['ID']
+io = os.environ['IO']
+bot_key = os.environ['BOT_KEY']
+
+aio = Client(id,io)
   
 def demo_on(bot,update):
   data = Data(value=1)
@@ -31,7 +36,7 @@ def main(bot,update):
     demo(bot,update)
 
 
-bot_token = '2063969554:AAHevamQ5VGx_WdXLNhEC1hMI8_XQHo_2Kg'
+bot_token = bot_key
 u = Updater(bot_token,use_context=True)
 dp = u.dispatcher
 dp.add_handler(MessageHandler(Filters.text,main))
